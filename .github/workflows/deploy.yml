@@ -1,0 +1,86 @@
+name: Building Docker Image, Pushing Docker Image to ECR, and Creating AWS Resources
+
+on:
+    workflow_dispatch:
+
+jobs:
+  ECR_DEPLOYMENT:
+    name: Creating ECR Repo
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v1
+          
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+            aws-secret-access-key: ${{secrets.AWS_SECRET_KEY_ID}}
+            aws-region: us-east-1
+            
+        
+        - name: Terraform Init
+          run: terraform init
+          working-directory: modules/ECR
+
+        - name: Terraform Plan
+          run: terraform plan
+          working-directory: modules/ECR
+
+        - name: Terraform Apply
+          run: terraform apply -auto-approve
+          working-directory: modules/ECR
+
+  DOCKER_IMAGE:
+    needs: ECR_DEPLOYMENT
+    name: Building Docker Image and Pushing to ECR
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: building docker image
+         run: docker build -t goals-image:latest
+         working-directory: goals-app
+         
+       - name: Login to Amazon ECR
+         id: login-ecr
+         uses: aws-actions/amazon-ecr-login@v1 
+
+       - name: TAGGING-DOCKER-IMAGE
+         run: docker tag goals-image:latest ${{secrets.ECR_REGISTRY}}
+         working-directory: goals-app
+
+       - name: Pushing Docker Image
+         run: docker push ${{secrets.ECR_REGISTRY}}
+         working-directory: goals-app
+
+  Module_DEPLOYMENT:
+    name: Deploying Terraform Modules
+    runs-on: ubuntu-latest
+
+    defaults:
+        run:
+          shell: bash
+    
+    steps:
+       - name: Terraform Init
+         run: terraform init
+         working-directory: main
+
+       - name: Terraform Plan
+         run: teraform plan
+         working-directory: main
+
+       - name: Terraform Apply
+         run: terraform apply
+         working-directory: main
+        
+    
+    
