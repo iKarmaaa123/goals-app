@@ -43,9 +43,13 @@ jobs:
     name: Building Docker Image and Pushing to ECR
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        shell: powershell
+
     steps:
       - name: Checkout
-        run: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: building docker image
         run: docker build -t goals-image:latest .
