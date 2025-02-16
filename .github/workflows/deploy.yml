@@ -26,7 +26,6 @@ jobs:
             aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_key}}
             aws-region: us-east-1
             
-        
         - name: Terraform Init
           run: terraform init
           working-directory: modules/ECR
@@ -59,7 +58,7 @@ jobs:
 
        - name: Pushing Docker Image
          run: docker push ${{secrets.ECR_REGISTRY}}
-         working-directory: goals-app
+         working-directory: /goals-app
 
   MODULE_DEPLOYMENT:
     needs: ECR_DEPLOYMENT
