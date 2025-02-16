@@ -45,7 +45,7 @@ jobs:
 
     steps:
        - name: Checkout
-         run: actions/checkout@v4
+         run: actions/checkout@v2
 
        - name: building docker image
          run: docker build -t goals-image:latest .
@@ -57,11 +57,11 @@ jobs:
 
        - name: TAGGING-DOCKER-IMAGE
          run: docker tag goals-image:latest ${{secrets.ECR_REGISTRY}}
-         working-directory: /goals-app
+         working-directory: goals-app
 
        - name: Pushing Docker Image
          run: docker push ${{ secrets.ECR_REGISTRY }}
-         working-directory: /goals-app
+         working-directory: goals-app
 
   MODULE_DEPLOYMENT:
     needs: ECR_DEPLOYMENT
