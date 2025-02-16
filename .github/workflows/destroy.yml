@@ -13,18 +13,21 @@ jobs:
         shell: bash
 
     steps:
-      - name: Setting Up Terraform
-        uses: hashicorp/setup-terraform@v1
+     - name: Checkout
+       uses: actions/checkout
 
-      - name: Configuring AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
+     - name: Setting Up Terraform
+       uses: hashicorp/setup-terraform@v1
+
+     - name: Configuring AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-        working-directory: main 
+     - name: Terraform Destroy
+       run: terraform destroy -auto-approve
+       working-directory: main 
 
 
 
