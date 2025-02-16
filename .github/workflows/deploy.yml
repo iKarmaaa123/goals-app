@@ -46,7 +46,7 @@ jobs:
 
     steps:
        - name: building docker image
-         run: docker build -t goals-image:latest
+         run: docker build -t goals-image:latest .
          working-directory: goals-app
          
        - name: Login to Amazon ECR
