@@ -46,7 +46,7 @@ jobs:
     steps:
        - name: building docker image
          run: docker build -t goals-image:latest .
-         working-directory: goals-app
+         working-directory: /goals-app
          
        - name: Login to Amazon ECR
          id: login-ecr
@@ -54,7 +54,7 @@ jobs:
 
        - name: TAGGING-DOCKER-IMAGE
          run: docker tag goals-image:latest ${{secrets.ECR_REGISTRY}}
-         working-directory: goals-app
+         working-directory: /goals-app
 
        - name: Pushing Docker Image
          run: docker push ${{secrets.ECR_REGISTRY}}
