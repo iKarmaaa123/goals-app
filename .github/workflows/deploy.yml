@@ -44,27 +44,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-       - name: Checkout
-         run: actions/checkout@v2
+      - name: Checkout
+        run: actions/checkout@v2
 
-       - name: building docker image
-         run: docker build -t goals-image:latest .
-         working-directory: goals-app
+      - name: building docker image
+        run: docker build -t goals-image:latest .
+        working-directory: goals-app
          
-       - name: Login to Amazon ECR
-         id: login-ecr
-         uses: aws-actions/amazon-ecr-login@v1 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1 
 
-       - name: TAGGING-DOCKER-IMAGE
-         run: docker tag goals-image:latest ${{secrets.ECR_REGISTRY}}
-         working-directory: goals-app
+      - name: TAGGING-DOCKER-IMAGE
+        run: docker tag goals-image:latest ${{ secrets.ECR_REGISTRY }}
+        working-directory: goals-app
 
-       - name: Pushing Docker Image
-         run: docker push ${{ secrets.ECR_REGISTRY }}
-         working-directory: goals-app
+      - name: Pushing Docker Image
+        run: docker push ${{ secrets.ECR_REGISTRY }}
+        working-directory: goals-app
 
   MODULE_DEPLOYMENT:
-    needs: ECR_DEPLOYMENT
+    needs: DOCKER_IMAGE
     name: Deploying Terraform Modules
     runs-on: ubuntu-latest
 
