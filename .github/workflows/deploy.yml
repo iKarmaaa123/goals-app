@@ -87,7 +87,7 @@ jobs:
     
     steps:
        - name: Checkout
-         run: actions/checkout@v4
+         uses: actions/checkout@v2
 
        - name: Terraform Init
          run: terraform init
