@@ -27,7 +27,9 @@ jobs:
           aws-region: us-east-1
 
      - name: Terraform Destroy
-       run: terraform destroy -auto-approve
+       run: |
+        - terraform init  
+        - terraform destroy -auto-approve
        working-directory: main 
 
 
