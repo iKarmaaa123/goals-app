@@ -89,6 +89,9 @@ jobs:
        - name: Checkout
          uses: actions/checkout@v2
 
+       - name: Setting up Terraform
+         uses: hashicorp/setup-terraform@v1 
+
        - name: Terraform Init
          run: terraform init
          working-directory: main
