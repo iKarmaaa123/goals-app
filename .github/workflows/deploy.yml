@@ -59,7 +59,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-key-id: ${{ secrets.AWS_SECRET_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_ID }}
           region: us-east-1
          
       - name: Login to Amazon ECR
@@ -76,7 +76,7 @@ jobs:
         run: docker push ${{ secrets.ECR_REGISTRY }}
         working-directory: goals-app
 
-  MODULE_DEPLOYMENT:
+  TERRAFORM_MODULES_DEPLOYMENT:
     needs: DOCKER_IMAGE
     name: Deploying Terraform Modules
     runs-on: ubuntu-latest
