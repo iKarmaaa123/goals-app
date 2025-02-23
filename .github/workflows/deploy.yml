@@ -116,6 +116,13 @@ jobs:
          run: terraform init
          working-directory: main
 
+       - name: install checkov
+         run: pip3 install checkov
+
+       - name: running chechov
+         run: chechov -d
+         working-directory: main
+
        - name: Terraform Plan
          run: terraform plan
          working-directory: main
