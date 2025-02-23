@@ -55,6 +55,14 @@ jobs:
         run: docker build -t goals-image:latest .
         working-directory: goals-app
 
+      - name: installing trivy
+        run: pip install trivy
+        working-directory: goals-app
+        
+      - name: Scanning Docker image for any vulnerabilities
+        run: trivy image goals-image:latest
+        working-directory: goals-app 
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

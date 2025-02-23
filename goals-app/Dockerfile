@@ -1,12 +1,18 @@
+FROM node:22-alpine as Build
+
+WORKDIR /app
+
+COPY package.json .
+
+COPY . .
+
+RUN npm install
+
 FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package.json /app
-
-RUN npm install
-
-COPY . /app
+COPY --from=Build /app /app
 
 EXPOSE 80
 
