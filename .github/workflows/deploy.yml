@@ -51,12 +51,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: building docker image
+      - name: Building docker image
         run: docker build -t goals-image:latest .
         working-directory: goals-app
 
-      - name: installing trivy
-        run: pip install trivy
+      - name: Installing trivy
+        run: | 
+          sudo apt-get update trivy
+          sudo apt-get install trivy
         working-directory: goals-app
         
       - name: Scanning Docker image for any vulnerabilities
