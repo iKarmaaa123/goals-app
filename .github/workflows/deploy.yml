@@ -120,7 +120,7 @@ jobs:
          run: pip3 install checkov
 
        - name: running chechov
-         run: checkov --directory coderco-ecs-project/main
+         run: checkov --directory main
          working-directory: main
 
        - name: Terraform Plan
