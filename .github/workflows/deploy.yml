@@ -116,16 +116,19 @@ jobs:
          run: terraform init
          working-directory: main
 
-       - name: install checkov
-         run: pip3 install checkov
-
-       - name: running chechov
-         run: checkov --directory main
+       - name: Terraform validate
+         run: terraform validate
          working-directory: main
 
        - name: Terraform Plan
          run: terraform plan
          working-directory: main
+
+       - name: Installing checkov
+         run: pip3 install checkov
+
+       - name: Running chechov
+         run: checkov --directory ./main
 
        - name: Terraform Apply
          run: terraform apply -auto-approve
