@@ -4,6 +4,9 @@ resource "aws_lb" "my_aws_lb" {
   load_balancer_type = "application"
   security_groups    = var.security_groups
   subnets            = var.subnets
+  desync_mitigation_mode = "defensive"
+  drop_invalid_header_fields = true
+  enable_deletion_protection = true
 
   tags = {
     Environment = "goals-prod"
@@ -16,8 +19,15 @@ resource "aws_lb_target_group" "my_aws_lb_target_group" {
   protocol = "HTTP"
   target_type = "ip"
   vpc_id   = var.vpc_id
+
   health_check {
     path = "/health"
+    matcher = 200
+    port = "traffic-port"
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 10
+    interval = 30
   }
 }
 

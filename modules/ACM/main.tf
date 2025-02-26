@@ -2,6 +2,10 @@ resource "aws_acm_certificate" "my_aws_acm_certificate" {
   domain_name       = var.domain_name
   validation_method = "DNS"
 
+  options {
+    certificate_transparency_logging_preference = "ENABLED"
+  }
+
   tags = {
     Environment = "test"
   }

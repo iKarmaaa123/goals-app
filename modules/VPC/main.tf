@@ -10,7 +10,6 @@ resource "aws_subnet" "my_aws_public_subnet" {
   vpc_id     = aws_vpc.my_aws_vpc.id
   cidr_block = var.cidr_block
   availability_zone = var.availability_zone
-  map_public_ip_on_launch = true
 
   tags = {
     Name = "albsubnet"
@@ -21,7 +20,6 @@ resource "aws_subnet" "my_aws_public_subnet2" {
   vpc_id = aws_vpc.my_aws_vpc.id
   cidr_block = var.cidr_block2
   availability_zone = var.availability_zone2
-  map_public_ip_on_launch = true
 
   tags = {
     Name = "albsubnet2"

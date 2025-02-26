@@ -3,7 +3,7 @@ resource "aws_ecs_cluster" "my_aws_ecs_cluster" {
 
   setting {
     name  = "containerInsights"
-    value = "disabled"
+    value = "enabled"
   }
 }
 
