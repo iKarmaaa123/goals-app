@@ -128,7 +128,7 @@ jobs:
          run: pip3 install checkov
 
        - name: Running chechov
-         run: checkov --directory ./main --skip-check LOW
+         run: checkov --directory ./main --severity MEDIUM,HIGH,CRITICAL
 
        - name: Terraform Apply
          run: terraform apply -auto-approve
