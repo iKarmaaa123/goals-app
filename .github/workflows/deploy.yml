@@ -128,7 +128,7 @@ jobs:
          run: pip3 install checkov
 
        - name: Running chechov
-         run: checkov --directory ./main | grep -v "LOW"
+         run: checkov --directory ./main --skip-check CKV_SEV_1
 
        - name: Terraform Apply
          run: terraform apply -auto-approve
