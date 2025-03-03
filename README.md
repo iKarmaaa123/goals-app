@@ -1,1 +1,2 @@
-# coderco-ecs-project
+This is a cool project
+Hello my name is Waael
