@@ -7,13 +7,6 @@ resource "aws_lb" "my_aws_lb" {
   desync_mitigation_mode = "defensive"
   drop_invalid_header_fields = true
   enable_deletion_protection = true
-
-  access_logs {
-    bucket = "myawslbs3bucket"
-    prefix = "test-lb"
-    enabled = true
-  }
-
   tags = {
     Environment = "goals-prod"
   }
