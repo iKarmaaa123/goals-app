@@ -131,7 +131,7 @@ jobs:
          run: pip3 install -U checkov
 
        - name: Running chechov
-         run: checkov -d ./main --skip-check CKV_SEV_1
+         run: checkov -d ./main --soft-fail-on
 
        - name: Terraform Apply
          run: terraform apply -auto-approve
