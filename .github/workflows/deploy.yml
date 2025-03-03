@@ -127,11 +127,8 @@ jobs:
        - name: Installing checkov
          run: pip3 install checkov
 
-       - name: updated checkov
-         run: pip3 install -U checkov
-
        - name: Running chechov
-         run: checkov -d ./main --soft-fail-on
+         run: checkov -d ./main --soft-fail-on LOW
 
        - name: Terraform Apply
          run: terraform apply -auto-approve
