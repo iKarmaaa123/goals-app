@@ -4,9 +4,6 @@ resource "aws_lb" "my_aws_lb" {
   load_balancer_type = "application"
   security_groups    = var.security_groups
   subnets            = var.subnets
-  desync_mitigation_mode = "defensive"
-  drop_invalid_header_fields = true
-  enable_deletion_protection = true
   tags = {
     Environment = "goals-prod"
   }
