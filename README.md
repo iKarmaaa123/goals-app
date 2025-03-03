@@ -1,1 +1,1 @@
-# coderco-ecs-project
+This is a cool project
