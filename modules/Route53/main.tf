@@ -17,9 +17,3 @@ resource "aws_route53_record" "a_record" {
       evaluate_target_health = true
     }
 }
-/*
-resource "aws_acm_certificate_validation" "my_acm_certificate_validation" {
-  certificate_arn         = var.certificate_arn
-  validation_record_fqdns = [aws_route53_record.a_record.fqdn]
-}
-*/
