@@ -9,6 +9,35 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 <h2> Exporting Credentials </h2>
 When working with providers like MongoDB Atlas and AWS, having credentials that grant programmatic access to AWS is crucial. Without these credentials, deploying the necessary resources to AWS will be impossible. The following credentials need to be exported using a Windows terminal.
 
+
+<h2> Step 1: running the node.js application on a container locally </h2>
+We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
+'''hcl
+FROM node:22-alpine as Build
+
+WORKDIR /app
+
+COPY package.json .
+
+COPY . .
+
+RUN npm install
+
+FROM node:22-alpine
+
+WORKDIR /app
+
+COPY --from=Build /app /app
+
+EXPOSE 80
+
+CMD ["node", "server.js"]
+'''
+
+
+
+
+
 <h2> Step 1: Setting up credentials </h2>
 When working with providers AWS, having credentials that grant programmatic access to AWS is crucial. Without these credentials, deploying the necessary resources to AWS will be impossible. The following credentials need to be exported in the terminal.
 
@@ -22,5 +51,29 @@ export AWS_DEFAULT_REGION="<INSERT AWS REGION HERE>"
 Please avoid hardcoding your credentials as this poses major security risks for your AWS IAM account.
 
 
+
+
+
+
+
+
+
+
 <h2> Step 2: Setting up your Terraform resources </h2>
+Ensure you have the following Terraform modules setup for this project:
+
+
+
+
+
+
+```hcl
+modules/
+├── ECS/
+├── ECR/
+├── output.t
+├── terraform.tfvars
+├── variables.tf
+└── versions.tf
+```
 
