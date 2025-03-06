@@ -49,44 +49,15 @@ To start up the container using the Docker image you just built, run the followi
 docker run -d -p 80:80 --name goals-container goals-image
 ```hcl
 
-Run `docker ps` to ensure that the container is up and running
+Run `docker ps` to ensure that the container is up and running.
 
-<h2> Step 1: Setting up credentials </h2>
-When working with providers AWS, having credentials that grant programmatic access to AWS is crucial. Without these credentials, deploying the necessary resources to AWS will be impossible. The following credentials need to be exported in the terminal.
+In order to access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80.#
 
+<Screenshot of application>
 
-```hcl
-export AWS_ACCESS_KEY_ID="<INSERT YOUR KEY HERE>"
-export AWS_SECRET_ACCESS_KEY="<INSERT YOUR KEY HERE>"
-export AWS_DEFAULT_REGION="<INSERT AWS REGION HERE>"
-```
+If you see this page it means you have successfully connected to your container on your localhost.
 
-Please avoid hardcoding your credentials as this poses major security risks for your AWS IAM account.
+<h2> Step 2: Pushing Docker image to ECR </h2>
 
 
-
-
-
-
-
-
-
-
-<h2> Step 2: Setting up your Terraform resources </h2>
-Ensure you have the following Terraform modules setup for this project:
-
-
-
-
-
-
-```hcl
-modules/
-├── ECS/
-├── ECR/
-├── output.t
-├── terraform.tfvars
-├── variables.tf
-└── versions.tf
-```
 
