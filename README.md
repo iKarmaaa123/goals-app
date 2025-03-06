@@ -6,10 +6,6 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 
 <h2> Architectural diagram of project </h2>
 
-<h2> Exporting Credentials </h2>
-When working with providers like MongoDB Atlas and AWS, having credentials that grant programmatic access to AWS is crucial. Without these credentials, deploying the necessary resources to AWS will be impossible. The following credentials need to be exported using a Windows terminal.
-
-
 <h2> Step 1: Running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
 
@@ -47,7 +43,7 @@ To start up the container using the Docker image you just built, run the followi
 
 ```hcl
 docker run -d -p 80:80 --name goals-container goals-image
-```hcl
+```
 
 Run `docker ps` to ensure that the container is up and running.
 
