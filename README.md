@@ -49,7 +49,7 @@ To start up the container using the Docker image you just built, run the followi
 docker run -d -p 80:80 --name goals-container goals-image
 ```hcl
 
-Run ```hcl  docker ps ``` to ensure that the container is up and running
+Run `docker ps` to ensure that the container is up and running
 
 <h2> Step 1: Setting up credentials </h2>
 When working with providers AWS, having credentials that grant programmatic access to AWS is crucial. Without these credentials, deploying the necessary resources to AWS will be impossible. The following credentials need to be exported in the terminal.
