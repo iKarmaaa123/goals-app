@@ -12,7 +12,7 @@ When working with providers like MongoDB Atlas and AWS, having credentials that 
 
 <h2> Step 1: running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
-'''hcl
+```hcl
 FROM node:22-alpine as Build
 
 WORKDIR /app
@@ -32,7 +32,7 @@ COPY --from=Build /app /app
 EXPOSE 80
 
 CMD ["node", "server.js"]
-'''
+```
 
 
 
