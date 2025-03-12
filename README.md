@@ -6,7 +6,7 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 
 <h2> Architectural diagram of project </h2>
 
-![Architecture}(images/Architecture.drawio.png)
+![Architecture](images/Architecture.drawio.png)
 
 <h2> Step 1: Running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
