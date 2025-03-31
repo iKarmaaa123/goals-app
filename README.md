@@ -8,17 +8,18 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 
 ![Architecture](images/Architecture.drawio.png)
 
-<h2> Setting up AWS ECR Image Repository </h2>
+<h2> Step 1: Setting up AWS ECR Image Repository </h2>
 
 After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
 
 After that run the ``` terraform plan ``` command to see what is going to be created and deployed, and then the ``` terraform apply ``` command to deploy the AWS ECR image repo.
 
-You should see a newly created AWS ECR image
+You should see a newly created AWS ECR image repo inside of AWS ECR:
+<screenshot of AWS ECR image repo>
 
 After you have done that
 
-<h2> Step 1: Running the node.js application on a container locally </h2>
+<h2> Step 2: Running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
 
 ```hcl
@@ -65,12 +66,11 @@ To access your container that you just started up you will have to connect to it
 
 If you see this page, you have successfully connected to your container on your localhost.
 
-<h2> Step 2: Pushing Docker image to ECR </h2>
+<h2> Step 3: Pushing Docker image to ECR </h2>
 
 After getting the container running on your local machine, it is time to deploy this container to AWS ECS. Before we can do that though we need to push a Docker image to AWS ECR so that our containerised app running within AWS ECS can pull our image from AWS ECR.
 
 Run the following command to generate an authentication token that you need to authenticate with AWS ECR to push your Docker images to it:
-
 
 ```hcl
 aws ecr get-login-password --region <region_name>
