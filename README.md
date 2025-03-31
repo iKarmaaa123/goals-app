@@ -102,6 +102,6 @@ You should now be able to see your Docker image in AWS ECR:
 
 Now that we have our container image in AWS ECR, it is time to run our application within AWS ECS.
 
-In the cloned repo you will see a main directory that calls Terraform modules such as an ECS module, ALB module, CloudWatch module, Route 53 module, and a VPC module. To deploy the infrastructure run the terraform init command to initialise your current working directory, install the provider plugins, and install the modules that we have instantiated within the main.tf file. After you have done this, run the ```hcl terraform plan ``` command to see the plan execution and then run ```hcl terraform apply ``` to deploy the infrastructure.
+In the cloned repo you will see a main directory that calls Terraform modules such as an ECS module, ALB module, CloudWatch module, Route 53 module, and a VPC module. To deploy the infrastructure run the terraform init command to initialise your current working directory, install the provider plugins, and install the modules that we have instantiated within the main.tf file. After you have done this, run the ```terraform plan``` command to see the plan execution and then run ```terraform apply``` to deploy the infrastructure.
 
 
