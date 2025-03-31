@@ -49,13 +49,42 @@ docker run -d -p 80:80 --name goals-container goals-image
 
 Run `docker ps` to ensure that the container is up and running.
 
-In order to access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80.#
+To access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80.#
 
 <Screenshot of application>
 
-If you see this page it means you have successfully connected to your container on your localhost.
+If you see this page, you have successfully connected to your container on your localhost.
 
 <h2> Step 2: Pushing Docker image to ECR </h2>
 
+After getting the container running on your local machine, it is time to deploy this container to AWS ECS. Before we can do that though we need to push a Docker image to AWS ECR so that our containerised app running within AWS ECS can pull our image from AWS ECR.
 
+Run the following command to generate an authentication token that you need to authenticate with AWS ECR to push your Docker images to it:
+
+
+```hcl
+aws ecr get-login-password --region <region_name>
+```
+
+Run the following command to authenticate with AWS ECR:
+
+```hcl
+aws ecr --region <region> | docker login -u AWS -p <authentication_token> <repo_uri>
+```
+
+Now tag your docker image with the ECR Registry:
+
+```hcl
+docker tag <source_image_tag> <target_ecr_repo_uri>
+```
+
+Now push your docker image to AWS ECR:
+
+```hcl
+docker push <ecr-repo-uri>
+'''
+
+Should now be able to see your Docker image in AWS ECR.
+
+<h1> </h1>
 
