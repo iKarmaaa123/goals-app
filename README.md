@@ -8,6 +8,16 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 
 ![Architecture](images/Architecture.drawio.png)
 
+<h2> Setting up AWS ECR Image Repository </h2>
+
+After git cloning the repository, cd into the ECR module and run ```hcl terraform init ``` to initialise your current working directory, and to also install the provider plugins.
+
+After that run the ```hcl terraform plan ``` command to see what is going to be created and deployed, and then the ```hcl terraform apply ``` command to deploy the AWS ECR image repo.
+
+You should see a newly created AWS ECR image
+
+After you have done that
+
 <h2> Step 1: Running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
 
@@ -49,7 +59,7 @@ docker run -d -p 80:80 --name goals-container goals-image
 
 Run `docker ps` to ensure that the container is up and running.
 
-To access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80.#
+To access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80.
 
 <Screenshot of application>
 
@@ -82,9 +92,8 @@ Now push your docker image to AWS ECR:
 
 ```hcl
 docker push <ecr-repo-uri>
-'''
+```
 
 Should now be able to see your Docker image in AWS ECR.
 
-<h1> </h1>
 
