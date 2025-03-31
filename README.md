@@ -10,9 +10,9 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 
 <h2> Setting up AWS ECR Image Repository </h2>
 
-After git cloning the repository, cd into the ECR module and run ```hcl terraform init ``` to initialise your current working directory, and to also install the provider plugins.
+After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
 
-After that run the ```hcl terraform plan ``` command to see what is going to be created and deployed, and then the ```hcl terraform apply ``` command to deploy the AWS ECR image repo.
+After that run the ``` terraform plan ``` command to see what is going to be created and deployed, and then the ``` terraform apply ``` command to deploy the AWS ECR image repo.
 
 You should see a newly created AWS ECR image
 
