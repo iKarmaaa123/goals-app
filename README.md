@@ -109,8 +109,8 @@ Step 5: Accessing the website
 Wait for your ECS tasks to be running, and you should be able to access the application by typing in ikarmaaa123.com (or the domain name you have created). You should be directed to the webpage as displayed below:
 
 <image of screenshot of web page>
-
-Step 6: Cleaning up
+  
+<h2> Step 5: Cleaning up </h2>
 
 Well done, you now have successfully deployed your containerised application to AWS ECS and can access it through your own created domain name over an encrypted connection. Now it is important to delete your resources so that you do not incur any costs. In your current working directory that you are in run the ``` terraform destroy -auto-approve ``` to destroy your resources.
 
