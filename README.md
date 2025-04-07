@@ -103,7 +103,7 @@ Now that we have our container image in AWS ECR, it is time to run our applicati
 
 In the cloned repo you will see a directory called modules  that contains Terraform modules such as an ECS module, ALB module, CloudWatch module, Route 53 module, and a VPC module. To deploy the infrastructure run the ``` terraform init ``` command to initialise your current working directory, install the provider plugins, and install the modules that we have instantiated within the main.tf file. After doing this, run the ```terraform plan``` command to see the plan execution and then run ```terraform apply``` to deploy the infrastructure:
 
-![image](https://github.com/user-attachments/assets/f0ab8e2f-4bcc-470d-8c94-76fedfa06110)
+![image](https://github.com/user-attachments/assets/5bf21d8c-9055-43a9-ba69-6ca61810835b)
 
 Step 5: Accessing the web application
 
@@ -115,7 +115,7 @@ Wait for your ECS tasks to be running, and you should be able to access the appl
 
 Well done, you now have successfully deployed your containerised application to AWS ECS and can access it through your own created domain name over an encrypted connection. Now it is important to delete your resources so that you do not incur any costs. In your current working directory that you are in run the ``` terraform destroy -auto-approve ``` command to destroy your resources:
 
-![image](https://github.com/user-attachments/assets/3358238a-0cbd-46d8-a7e3-788b101ff72f)
+![image](https://github.com/user-attachments/assets/b742e748-95b3-4599-9988-5304dce1f55f)
 
 Now cd out of main and cd into modules/ECR to destroy the AWS ECR resources through the ```terraform destroy``` command.
 
