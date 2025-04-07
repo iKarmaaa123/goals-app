@@ -47,6 +47,8 @@ CMD ["node", "server.js"]
 This Dockerfile takes advantage of multi-stage Docker builds to help optimise and speed up Docker image build times. This helps reduce the size of the image, thus saving storage.
 
 To create the image run the following command:
+![image](https://github.com/user-attachments/assets/727c21db-932f-415d-9e9d-e8b8dd17dcc3)
+
 
 ```hcl
 docker build -t goals-image:latest .
@@ -60,11 +62,9 @@ docker run -d -p 80:80 --name goals-container goals-image
 
 Run `docker ps` to ensure the container is running.
 
-To access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80.
+To access your container that you just started up you will have to connect to it through localhost - for example in this case: http://locahost:80
 
-<Screenshot of application>
-
-If you see this page, you have successfully connected to your container on your localhost.
+If you can access your application, you have successfully connected to your container via your localhost. If you are having connections make sure you have probably set up everything and that you have exposed the right ports for your container.
 
 <h2> Step 3: Pushing Docker image to ECR </h2>
 
@@ -104,18 +104,14 @@ Now that we have our container image in AWS ECR, it is time to run our applicati
 
 In the cloned repo you will see a directory called Terraform modules such as an ECS module, ALB module, CloudWatch module, Route 53 module, and a VPC module. To deploy the infrastructure run the terraform init command to initialise your current working directory, install the provider plugins, and install the modules that we have instantiated within the main.tf file. After doing this, run the ```terraform plan``` command to see the plan execution and then run ```terraform apply``` to deploy the infrastructure.
 
-Step 5: Accessing the website
+Step 5: Accessing the web application
 
-Wait for your ECS tasks to be running, and you should be able to access the application by typing in ikarmaaa123.com (or the domain name you have created). You should be directed to the webpage as displayed below:
-
-<image of screenshot of web page>
+Wait for your ECS tasks to be running, and you should be able to access the application by typing in ikarmaaa123.com (or the domain name you have created). You should be directed to your webpage.
   
-<h2> Step 5: Cleaning up </h2>
+<h2> Step 6: Cleaning up </h2>
 
 Well done, you now have successfully deployed your containerised application to AWS ECS and can access it through your own created domain name over an encrypted connection. Now it is important to delete your resources so that you do not incur any costs. In your current working directory that you are in run the ``` terraform destroy -auto-approve ``` to destroy your resources.
 
-<provide screenshot>
-
-Now cd out of main and cd into modules/ECR to destroy the AWS ECR resources through the ```terraform destroy``` command:
+Now cd out of main and cd into modules/ECR to destroy the AWS ECR resources through the ```terraform destroy``` command.
 
 
