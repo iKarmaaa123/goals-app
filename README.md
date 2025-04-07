@@ -105,7 +105,7 @@ In the cloned repo you will see a directory called modules  that contains Terraf
 
 ![image](https://github.com/user-attachments/assets/5bf21d8c-9055-43a9-ba69-6ca61810835b)
 
-Step 5: Accessing the web application
+<h2> Step 5: Accessing the web application </h2>
 
 Wait for your ECS tasks to be running, and you should be able to access the application by typing in ikarmaaa123.com (or the domain name you have created). You should be directed to the webpage:
 
