@@ -1,12 +1,14 @@
 <h1>End-to-End AWS ECS Project</h1>
 
-<h2> Project Overview </h2>
+<h2> Overview </h2>
 
-This AWS ECS end-to-end project involves deploying and running a Node.js goals-management application, which allows users to create and manage their own goals, to AWS ECS. The technologies I used were Terraform, Docker, AWS, GitHub Actions, and Node.js. Terraform modules were used to create code that was both reusable and adhered to standard practices when writing Terraform code. AWS services such as ECS, ECR, VPC, Route53, CloudWatch, and ACM were utilised for this project. Best practices were followed and implemented within the project, as you will see when we discussed some of the various static analysis tools I used to ensure my Terraform and Docker image addressed any vulnerabilities and adhered to best security practices. Git pre-commit hooks were also used to ensure Terraform code was scanned and adhered to best practices before being committed and pushed to GitHub.
+This AWS ECS end-to-end project involves deploying a node.js goals-management application, which allows users to create and manage their own goals, to AWS ECS. The technologies I used were Terraform, Docker, AWS, GitHub Actions, and Node.js. Terraform modules were used to create code that was both reusable and adhered to standard practices when writing Terraform code. AWS services such as ECS, ECR, VPC, Route53, CloudWatch, and ACM were utilised for this project. Best practices were followed and implemented within the project, as you will see when we discussed some of the various static analysis tools I used to ensure my Terraform and Docker image addressed any vulnerabilities and adhered to best security practices. Git pre-commit hooks were also used to ensure Terraform code was scanned and adhered to best practices before being committed and pushed to GitHub.
+
+This README outlines how step-by-step how to set up and run your Docker containers locally, how to push your Docker images to AWS ECR, and how to set up the AWS ECS infrastructure with other AWS components that we will be using to deploy our containerised applications to.
 
 <h2> Prerequisites </h2>
 
-In order to follow this project you will need the following installed:
+To follow this project you will need the following installed:
 
 🛠 Prerequisites
 Before starting on this project, be sure to have the following installed on your computer:
@@ -17,7 +19,11 @@ Before starting on this project, be sure to have the following installed on your
 
 - ✅ Docker (installed Docker desktop if you are on a Windows machine) - [Download & Installl](https://www.docker.com/get-started/)
 
+For this specific project you can use whatever application you want. Just be sure that the application works on your local machine before containerising it. Also, be wary of what application port your application is listening to, and that you are mapping the correct host network port to the container.
+
 <h2> Architectural diagram of the project </h2>
+
+Below is a visual representation of the infrastructure that we are going to be setting up in this project:
 
 ![Architecture](images/Architecture.drawio.png)
 
@@ -128,6 +134,8 @@ Well done, you now have successfully deployed your containerised application to 
 
 ![image](https://github.com/user-attachments/assets/b742e748-95b3-4599-9988-5304dce1f55f)
 
-Now cd out of main and cd into modules/ECR to destroy the AWS ECR resources through the ```terraform destroy``` command.
+Now cd out of main and cd into modules/ECR to destroy the AWS ECR repository through the ```terraform destroy``` command:
+![image](https://github.com/user-attachments/assets/75d31007-80cb-4e53-9cb0-ebbaf6b0f14a)
+
 
 
