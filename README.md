@@ -6,7 +6,14 @@ This AWS ECS end-to-end project involves deploying and running a Node.js goals-m
 
 <h2> Prerequisites </h2>
 
-In order to follow this project you will need the following installed: 
+In order to follow this project you will need the following installed:
+
+🛠 Prerequisites
+Before starting on this project, be ensure you have the following installed on your computer:
+
+✅ An AWS Account
+✅ The latest stable version of Terraform
+✅ Docker (installed Docker desktop if you are on a Windows machine)
 
 <h2> Architectural diagram of the project </h2>
 
@@ -102,6 +109,8 @@ You should now be able to see your Docker image within your AWS ECR repo:
 ![image](https://github.com/user-attachments/assets/d8442901-b3be-4396-bd29-7bf24e358490)
 
 <h2> Step 4: Setting up the application to run on AWS ECS </h2>
+
+[I'm an inline-style link](https://www.google.com)
 
 Now that we have our container image in AWS ECR, it is time to run our application within AWS ECS.
 
