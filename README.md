@@ -11,9 +11,9 @@ In order to follow this project you will need the following installed:
 🛠 Prerequisites
 Before starting on this project, be ensure you have the following installed on your computer:
 
-✅ An AWS Account
-✅ The latest stable version of Terraform
-✅ Docker (installed Docker desktop if you are on a Windows machine)
+✅ An AWS Account - [Create Account Here](https://aws.amazon.com/free/?trk=ce1f55b8-6da8-4aa2-af36-3f11e9a449ae&sc_channel=ps&ef_id=Cj0KCQjw782_BhDjARIsABTv_JCWZitQyH0tU_lYElDDQ9HdBabDxB-tKSgYDsRiU0N_XqiVVpjvBTUaAmR7EALw_wcB:G:s&s_kwcid=AL!4422!3!433803621002!e!!g!!aws%20sign%20up!9762827897!98496538743&gclid=Cj0KCQjw782_BhDjARIsABTv_JCWZitQyH0tU_lYElDDQ9HdBabDxB-tKSgYDsRiU0N_XqiVVpjvBTUaAmR7EALw_wcB&all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all)
+✅ The latest stable version of Terraform - [Download & Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+✅ Docker (installed Docker desktop if you are on a Windows machine) - [Download & Installl](https://www.docker.com/get-started/)
 
 <h2> Architectural diagram of the project </h2>
 
@@ -24,8 +24,6 @@ Before starting on this project, be ensure you have the following installed on y
 After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
 
 After that run the ``` terraform plan ``` command to see what is going to be created and deployed, and then the ``` terraform apply ``` command to deploy the AWS ECR image repo:
-
-
 
 You should see a newly created AWS ECR image repo inside of AWS ECR:
 ![image](https://github.com/user-attachments/assets/619c9afa-f941-4f28-9e81-119306d026fa)
@@ -109,8 +107,6 @@ You should now be able to see your Docker image within your AWS ECR repo:
 ![image](https://github.com/user-attachments/assets/d8442901-b3be-4396-bd29-7bf24e358490)
 
 <h2> Step 4: Setting up the application to run on AWS ECS </h2>
-
-[I'm an inline-style link](https://www.google.com)
 
 Now that we have our container image in AWS ECR, it is time to run our application within AWS ECS.
 
