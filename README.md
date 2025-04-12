@@ -19,7 +19,7 @@ Before starting on this project, be sure to have the following installed on your
 
 - ✅ Docker (installed Docker desktop if you are on a Windows machine) - [Download & Installl](https://www.docker.com/get-started/)
 
-For this specific project you can use whatever application you want. Just be sure that the application works on your local machine before containerising it. Also, be wary of what application port your application is listening to, and that you are mapping the correct host network port to the container.
+For this specific project you can use whatever application you want. Ensure the application works on your local machine before containerising it. Also, be wary of what application port your application is listening to, and that you are mapping the correct host network port to the container.
 
 <h2> Architectural diagram of the project </h2>
 
@@ -27,16 +27,7 @@ Below is a visual representation of the infrastructure that we are going to be s
 
 ![Architecture](images/Architecture.drawio.png)
 
-<h2> Step 1: Setting up AWS ECR Image Repository </h2>
-
-After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
-
-After that run the ``` terraform plan ``` command to see what is going to be created and deployed, and then the ``` terraform apply ``` command to deploy the AWS ECR image repo:
-
-You should see a newly created AWS ECR image repo inside of AWS ECR:
-![image](https://github.com/user-attachments/assets/619c9afa-f941-4f28-9e81-119306d026fa)
-
-<h2> Step 2: Running the node.js application on a container locally </h2>
+<h2> Step 1: Running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
 
 ```hcl
@@ -61,7 +52,7 @@ EXPOSE 80
 CMD ["node", "server.js"]
 ```
 
-This Dockerfile takes advantage of multi-stage Docker builds to help optimise and speed up Docker image build times. This helps reduce the size of the image.
+This Dockerfile takes advantage of multi-stage builds to help optimise and speed up Docker image build times. This helps reduce the size of the image.
 
 To create the image run the following command:
 
@@ -81,6 +72,14 @@ To access your container that you just started up you will have to connect to it
 
 If you can access your application, you have successfully connected to your container via your localhost. If you are having connections make sure you have probably set up everything and that you have exposed the right ports for your container.
 
+<h2> Step 2: Setting up AWS ECR Image Repository </h2>
+
+After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
+
+After that run the ``` terraform plan ``` command to see what is going to be created and deployed, and then the ``` terraform apply ``` command to deploy the AWS ECR image repo:
+
+You should see a newly created AWS ECR image repo inside of AWS ECR:
+![image](https://github.com/user-attachments/assets/619c9afa-f941-4f28-9e81-119306d026fa)
 
 <h2> Step 3: Pushing Docker image to ECR </h2>
 
