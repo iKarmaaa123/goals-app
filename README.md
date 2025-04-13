@@ -147,7 +147,7 @@ After you have clicked 'actions', on the left you will see the workflows that yo
 
 ![image](https://github.com/user-attachments/assets/75d2b93c-2cee-4735-b3b4-8ca31ef80b70)
 
-Click on the deploy pipeline and then press 'run workflow':
+Click on the 'Building Docker Image, Pushing Docker Image to ECR, and Creating AWS Resources' pipeline and then press 'run workflow':
 
 ![image](https://github.com/user-attachments/assets/470af851-bbb1-487f-9c58-b6f6a356e69d)
 
@@ -167,7 +167,7 @@ Type in 'ikarmaa123.com' in your browser and you should be prompted with the sam
 
 ![image](https://github.com/user-attachments/assets/f270d19c-24cc-412a-952e-1da4f0dd13cb)
 
-Now destroy the infrastructure by running the 'destroy' workflow:
+Now destroy the infrastructure by running the 'Destroying Terraform Resources' workflow:
 
 ![image](https://github.com/user-attachments/assets/e5038c7d-eab7-41a7-bf4c-0f0667538190)
 
