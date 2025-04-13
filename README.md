@@ -109,58 +109,108 @@ Now push your docker image to AWS ECR:
 docker push <ecr-repo-uri>
 ```
 
+
+
 You should now be able to see your Docker image within your AWS ECR repo:
+
+
 
 ![image](https://github.com/user-attachments/assets/d8442901-b3be-4396-bd29-7bf24e358490)
 
+
+
 <h2> Step 4: Setting up the application to run on AWS ECS </h2>
+
+
 
 Now that we have our container image in AWS ECR, it is time to run our application within AWS ECS.
 
+
+
 In the cloned repo you will see a directory called modules  that contains Terraform modules such as an ECS module, ALB module, CloudWatch module, Route 53 module, and a VPC module. To deploy the infrastructure run the ``` terraform init ``` command to initialise your current working directory, install the provider plugins, and install the modules that we have instantiated within the main.tf file. After doing this, run the ```terraform plan``` command to see the plan execution and then run ```terraform apply``` to deploy the infrastructure:
+
+
 
 ![image](https://github.com/user-attachments/assets/5bf21d8c-9055-43a9-ba69-6ca61810835b)
 
+
+
 <h2> Step 5: Accessing the web application </h2>
+
+
 
 Wait for your ECS tasks to be running, and you should be able to access the application by typing in ikarmaaa123.com (or the domain name you have created). You should be directed to the webpage:
 
+
+
 ![image](https://github.com/user-attachments/assets/b12a4bc8-595e-4a1b-baa0-8fffc77aad1f)
+
+
 
 <h2> Step 6: Cleaning up </h2>
 
+
+
 Well done, you now have successfully deployed your containerised application to AWS ECS and can access it through your own created domain name over an encrypted connection. Now it is important to delete your resources so that you do not incur any costs. In your current working directory that you are in run the ``` terraform destroy -auto-approve ``` command to destroy your resources:
+
+
 
 ![image](https://github.com/user-attachments/assets/b742e748-95b3-4599-9988-5304dce1f55f)
 
+
+
 Now cd out of main and cd into modules/ECR to destroy the AWS ECR repository through the ```terraform destroy``` command:
+
+
 
 ![image](https://github.com/user-attachments/assets/75d31007-80cb-4e53-9cb0-ebbaf6b0f14a)
 
+
+
 <h2> Step 7: Building of image, pushing of image, creating and destroying of infrastructure through CI/CD pipelines </h2>
+
+
 
 Now that you have manually built your Docker image, pushed it to ECR, created the infrastructure, and destroyed it manually, it is time to automate this whole process through CI/CD pipelines. After you clone the repository, you will find two GitHub Actions CI/CD pipeline YAML configuration files - ```deploy.yml``` and ```destroy.yml```. The deploy pipeline does several things- automating the creation of the Docker image, pushing the Docker image to AWS ECR, and setting up our AWS infrastructure. The destroy pipeline destroys the whole infrastructure. After pushing to your GitHub, to run these pipelines navigate over to actions at the top:
 
+
+
 ![image](https://github.com/user-attachments/assets/acf85475-e22d-4158-a9fa-c5b283faf4c7)
+
+
 
 After you have clicked 'actions', on the left you will see the workflows that you pushed from your local repository to your remote repository:
 
+
+
 ![image](https://github.com/user-attachments/assets/75d2b93c-2cee-4735-b3b4-8ca31ef80b70)
+
+
 
 Click on the deploy pipeline and then press 'run workflow'
 ![image](https://github.com/user-attachments/assets/470af851-bbb1-487f-9c58-b6f6a356e69d)
 
+
+
 You should see your workflow running:
 ![image](https://github.com/user-attachments/assets/4da49483-0d79-43d9-bffe-1d3fb3f2c0a8)
+
+
 
 Click on it to see the 'jobs' that are currently running within your pipeline:
 ![image](https://github.com/user-attachments/assets/e48c9516-3da9-4563-9b07-4c316aea1ec3)
 
+
+
 If all the jobs have a tick then you have successfully automated the deployment process for this whole project:
 ![image](https://github.com/user-attachments/assets/c651cfd1-b252-46d0-a427-4dd12925d994)
 
+
+
 Type in 'ikarmaa123.com' in your browser and you should be prompted with the same goals web page that we deployed before manually:
 ![image](https://github.com/user-attachments/assets/f270d19c-24cc-412a-952e-1da4f0dd13cb)
+
+
 
 Now destroy the infrastructure by running the 'destroy' workflow:
 ![image](https://github.com/user-attachments/assets/e5038c7d-eab7-41a7-bf4c-0f0667538190)
