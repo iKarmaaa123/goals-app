@@ -72,6 +72,9 @@ To access your container that you just started up you will have to connect to it
 
 If you can access your application, you have successfully connected to your container via your localhost. If you are having connections make sure you have probably set up everything and that you have exposed the right ports for your container.
 
+
+
+
 <h2> Step 2: Setting up AWS ECR Image Repository </h2>
 
 After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
@@ -80,6 +83,9 @@ After that run the ``` terraform plan ``` command to see what is going to be cre
 
 You should see a newly created AWS ECR image repo inside of AWS ECR:
 ![image](https://github.com/user-attachments/assets/619c9afa-f941-4f28-9e81-119306d026fa)
+
+
+
 
 <h2> Step 3: Pushing Docker image to ECR </h2>
 
@@ -113,6 +119,9 @@ You should now be able to see your Docker image within your AWS ECR repo:
 
 ![image](https://github.com/user-attachments/assets/d8442901-b3be-4396-bd29-7bf24e358490)
 
+
+
+
 <h2> Step 4: Setting up the application to run on AWS ECS </h2>
 
 Now that we have our container image in AWS ECR, it is time to run our application within AWS ECS.
@@ -121,11 +130,17 @@ In the cloned repo you will see a directory called modules  that contains Terraf
 
 ![image](https://github.com/user-attachments/assets/5bf21d8c-9055-43a9-ba69-6ca61810835b)
 
+
+
+
 <h2> Step 5: Accessing the web application </h2>
 
 Wait for your ECS tasks to be running, and you should be able to access the application by typing in ikarmaaa123.com (or the domain name you have created). You should be directed to the webpage:
 
 ![image](https://github.com/user-attachments/assets/b12a4bc8-595e-4a1b-baa0-8fffc77aad1f)
+
+
+
 
 <h2> Step 6: Cleaning up </h2>
 
@@ -136,6 +151,9 @@ Well done, you now have successfully deployed your containerised application to 
 Now cd out of main and cd into modules/ECR to destroy the AWS ECR repository through the ```terraform destroy``` command:
 
 ![image](https://github.com/user-attachments/assets/75d31007-80cb-4e53-9cb0-ebbaf6b0f14a)
+
+
+
 
 <h2> Step 7: Building Docker image, pushing Docker image, creating and destroying the infrastructure through GitHub Actions CI/CD pipelines </h2>
 
