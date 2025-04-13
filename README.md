@@ -23,7 +23,7 @@ For this specific project you can use whatever application you want. Ensure the 
 
 <h2> Architectural diagram of the project </h2>
 
-Below is a visual representation of the infrastructure that we are going to be setting up in this project:
+Below is a visual architectural representation of the infrastructure that we are going to be setting up in this project:
 
 ![Architecture](images/Architecture.drawio.png)
 
