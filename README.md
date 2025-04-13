@@ -4,7 +4,7 @@
 
 This AWS ECS end-to-end project involves deploying a node.js goals-management application, which allows users to create and manage their own goals, to AWS ECS. The technologies I used were Terraform, Docker, AWS, GitHub Actions, and Node.js. Terraform modules were used to create code that was both reusable and adhered to standard practices when writing Terraform code. AWS services such as ECS, ECR, VPC, Route53, CloudWatch, and ACM were utilised for this project. Best practices were followed and implemented within the project, as you will see when we discussed some of the various static analysis tools I used to ensure my Terraform and Docker image addressed any vulnerabilities and adhered to best security practices. Git pre-commit hooks were also used to ensure Terraform code was scanned and adhered to best practices before being committed and pushed to GitHub.
 
-This README outlines how step-by-step how to set up and run your Docker containers locally, how to push your Docker images to AWS ECR, and how to set up the AWS ECS infrastructure with other AWS components that we will be using to deploy our containerised applications to.
+This README outlines step-by-step instructions for setting up and running your Docker containers locally, pushing your Docker images to AWS ECR, and setting up the AWS ECS infrastructure with other AWS components that we will be using to deploy our containerised applications.
 
 <h2> Prerequisites </h2>
 
@@ -136,6 +136,47 @@ Well done, you now have successfully deployed your containerised application to 
 Now cd out of main and cd into modules/ECR to destroy the AWS ECR repository through the ```terraform destroy``` command:
 
 ![image](https://github.com/user-attachments/assets/75d31007-80cb-4e53-9cb0-ebbaf6b0f14a)
+
+<h2> Step 7: Building of image, pushing of image, creating and destroying of infrastructure through CI/CD pipelines </h2>
+
+Now that you have manually built your Docker image, pushed it to ECR, created the infrastructure, and destroyed it manually, it is time to automate this whole process through CI/CD pipelines. After you clone the repository, you will find two GitHub Actions CI/CD pipeline YAML configuration files - ```deploy.yml``` and ```destroy.yml```. The deploy pipeline does several things- automating the creation of the Docker image, pushing the Docker image to AWS ECR, and setting up our AWS infrastructure. The destroy pipeline destroys the whole infrastructure. After pushing to your GitHub, to run these pipelines navigate over to actions at the top:
+
+![image](https://github.com/user-attachments/assets/acf85475-e22d-4158-a9fa-c5b283faf4c7)
+
+After you have clicked 'actions', on the left you will see the workflows that you pushed from your local repository to your remote repository:
+
+![image](https://github.com/user-attachments/assets/75d2b93c-2cee-4735-b3b4-8ca31ef80b70)
+
+Click on the deploy pipeline and then press 'run workflow'
+![image](https://github.com/user-attachments/assets/470af851-bbb1-487f-9c58-b6f6a356e69d)
+
+You should see your workflow running:
+![image](https://github.com/user-attachments/assets/4da49483-0d79-43d9-bffe-1d3fb3f2c0a8)
+
+Click on it to see the 'jobs' that are currently running within your pipeline:
+![image](https://github.com/user-attachments/assets/e48c9516-3da9-4563-9b07-4c316aea1ec3)
+
+If all the jobs have a tick then you have successfully automated the deployment process for this whole project:
+![image](https://github.com/user-attachments/assets/c651cfd1-b252-46d0-a427-4dd12925d994)
+
+Type in 'ikarmaa123.com' in your browser and you should be prompted with the same goals web page that we deployed before manually:
+![image](https://github.com/user-attachments/assets/f270d19c-24cc-412a-952e-1da4f0dd13cb)
+
+Now destroy the infrastructure by running the 'destroy' workflow:
+![image](https://github.com/user-attachments/assets/e5038c7d-eab7-41a7-bf4c-0f0667538190)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
