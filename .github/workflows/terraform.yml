@@ -1,0 +1,63 @@
+name: Deploying Terraform Resources
+
+on:
+  workflow_dispatch
+
+jobs:
+  terraform_deployment:
+    name: Deploying Terraform Modules
+    runs-on: ubuntu-latest
+    steps:
+       - name: Checkout
+         uses: actions/checkout@v2
+
+       - name: Setting up Terraform
+         uses: hashicorp/setup-terraform@v1
+
+       - name: Configuring AWS Credentials
+         uses: aws-actions/configure-aws-credentials@v1
+         with:
+           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+           aws-region: ${{ env.AWS_REGION }}
+
+       - name: Terraform Init
+         run: terraform init
+         working-directory: main
+        
+       - name: Setup TFLint
+       - uses: terraform-linters/setup-tflint@v4
+         with:
+          tflint_version: v0.52.0
+
+       - name: Init TFLint
+         run: tflint --init
+         #env:
+        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+         #GITHUB_TOKEN: ${{ github.token }}
+
+       - name: Run TFLint
+         run: tflint -f compact
+
+       - name: Terraform validate
+         run: terraform validate
+         working-directory: main
+
+       - name: Terraform Plan
+         run: terraform plan
+         working-directory: main
+        
+       - name: Running Checkov
+         uses: bridgecrewio/checkov-action@master
+         with:
+           directory: ./main
+           quiet: true 
+           soft_fail: true 
+           framework: terraform 
+
+       - name: Terraform Apply
+         run: terraform apply -auto-approve
+         working-directory: main
+        
+    
+    
