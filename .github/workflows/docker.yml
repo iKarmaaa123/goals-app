@@ -38,7 +38,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
         with:
-          mask-password: 'false'
+          mask-password: 'true'
 
       - name: Tagging Docker Image
         run: docker tag goals-image:latest ${{ secrets.ECR_REGISTRY }}
