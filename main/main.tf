@@ -46,6 +46,17 @@ module "ecs" {
   subnets = [module.vpc.private_subnet_id, module.vpc.private_subnet2_id]
   security_groups = [module.vpc.security_group_ecs_id, module.vpc.security_group_alb_id]
   target_group_arn = module.alb.target_group_arn
+  ecs_cluster = var.ecs_cluster
+  family = var.family
+  requires_compatibilities = var.requires_compatibilities
+  network_mode = var.network_mode
+  memory = var.memory
+  cpu = var.cpu
+  aws_ecs_service_name = var.ecs_service_name
+  launch_type = var.launch_type
+  desired_count = var.desired_count
+  container_name = var.container_name
+  container_port = var.container_port
 }
 
 module "cloudwatch" {

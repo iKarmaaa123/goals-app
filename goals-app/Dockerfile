@@ -8,7 +8,7 @@ COPY . .
 
 RUN npm install
 
-FROM node:22-alpine
+FROM node:22-slim
 
 WORKDIR /app
 

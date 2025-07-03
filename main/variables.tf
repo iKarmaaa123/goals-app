@@ -67,3 +67,63 @@ variable "zone_id" {
     type = string
     default = ""
 }
+
+variable "ecs_cluster" {
+  type = string
+  default = ""
+}
+
+variable "family" {
+    type = string
+    default = ""  
+}
+
+variable "requires_compatibilities" {
+    type = list(string)
+    default = []
+}
+
+variable "network_mode" {
+    type = string
+    default = ""
+}
+
+variable "memory" {
+    type = string
+    default = ""
+}
+
+variable "cpu" {
+    type = string
+    default = ""
+}
+
+variable "ecs_service_name" {
+  type = string
+  default = ""
+}
+
+variable "launch_type" {
+  type = string
+  default = ""
+}
+
+variable "desired_count" {
+  type = number
+  default = 0
+}
+
+variable "assign_public_ip" {
+  type = string
+  default = ""
+}
+
+variable "container_name" {
+  type = string
+  default = ""
+}
+
+variable "container_port" {
+  type = number
+  default = 0
+}

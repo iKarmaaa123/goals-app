@@ -1,0 +1,51 @@
+name: Docker workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+  build_image:
+    name: Building Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Building docker image
+        run: docker build -t goals-image:latest .
+        working-directory: goals-app
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: 'docker.io/coderco-ecs-project:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+  deploy_image_to_ecr:
+        needs: build_image
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+         
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          mask_password: 'true'
+
+      - name: Tagging Docker Image
+        run: docker tag goals-image:latest ${{ secrets.ECR_REGISTRY }}
+        working-directory: goals-app
+
+      - name: Pushing Docker Image
+        run: docker push ${{ secrets.ECR_REGISTRY }}
+        working-directory: goals-app
+
+  
