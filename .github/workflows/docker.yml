@@ -26,8 +26,8 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
   deploy_image_to_ecr:
-        needs: build_image
       - name: Configure AWS Credentials
+        needs: build_image
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
