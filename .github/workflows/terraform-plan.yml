@@ -1,4 +1,4 @@
-name: Deploying Terraform Resources
+name: Terraform Plan Workflow
 
 on:
   workflow_dispatch
@@ -19,7 +19,7 @@ jobs:
          with:
            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-           aws-region: ${{ env.AWS_REGION }}
+           aws-region: us-east-1
 
        - name: Terraform Init
          run: terraform init
@@ -32,12 +32,17 @@ jobs:
 
        - name: Init TFLint
          run: tflint --init
-         #env:
-        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-         #GITHUB_TOKEN: ${{ github.token }}
 
        - name: Run TFLint
          run: tflint -f compact
+
+       - name: Running Checkov
+         uses: bridgecrewio/checkov-action@master
+         with:
+           directory: ./main
+           quiet: true 
+           soft_fail: true 
+           framework: terraform 
 
        - name: Terraform validate
          run: terraform validate
@@ -47,17 +52,3 @@ jobs:
          run: terraform plan
          working-directory: main
         
-       - name: Running Checkov
-         uses: bridgecrewio/checkov-action@master
-         with:
-           directory: ./main
-           quiet: true 
-           soft_fail: true 
-           framework: terraform 
-
-       - name: Terraform Apply
-         run: terraform apply -auto-approve
-         working-directory: main
-        
-    
-    
