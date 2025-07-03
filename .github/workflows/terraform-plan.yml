@@ -12,7 +12,7 @@ jobs:
          uses: actions/checkout@v2
 
        - name: Setting up Terraform
-         uses: hashicorp/setup-terraform@v1
+         uses: hashicorp/setup-terraform@v1 ##fsdf
 
        - name: Configuring AWS Credentials
          uses: aws-actions/configure-aws-credentials@v1
