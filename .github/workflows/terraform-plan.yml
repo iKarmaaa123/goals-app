@@ -4,7 +4,7 @@ on:
   workflow_dispatch
 
 jobs:
-  terraform_deployment:
+  terraform_plan:
     name: Deploying Terraform Modules
     runs-on: ubuntu-latest
     steps:
@@ -12,7 +12,7 @@ jobs:
          uses: actions/checkout@v2
 
        - name: Setting up Terraform
-         uses: hashicorp/setup-terraform@v1 ##fsdf
+         uses: hashicorp/setup-terraform@v1
 
        - name: Configuring AWS Credentials
          uses: aws-actions/configure-aws-credentials@v1
