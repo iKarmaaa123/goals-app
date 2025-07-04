@@ -8,6 +8,11 @@ variable "subnets" {
     default = []
 }
 
+variable "drop_invalid_header_fields" {
+    type = bool
+    default = false
+}
+
 variable "security_groups" {
     type = list
     default = []

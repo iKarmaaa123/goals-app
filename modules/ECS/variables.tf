@@ -44,8 +44,8 @@ variable "desired_count" {
 }
 
 variable "assign_public_ip" {
-    type = string
-    default = ""
+    type = bool
+    default = true
 }
 
 variable "container_name" {

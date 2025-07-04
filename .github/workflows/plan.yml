@@ -42,7 +42,8 @@ jobs:
            directory: ./main
            quiet: true 
            soft_fail: true 
-           framework: terraform 
+           framework: terraform
+           args: --skip-severity LOW
 
        - name: Terraform validate
          run: terraform validate

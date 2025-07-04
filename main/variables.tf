@@ -68,6 +68,11 @@ variable "zone_id" {
     default = ""
 }
 
+variable "drop_invalid_header_fields" {
+    type = bool
+    default = false
+}
+
 variable "ecs_cluster" {
   type = string
   default = ""
@@ -114,8 +119,8 @@ variable "desired_count" {
 }
 
 variable "assign_public_ip" {
-  type = string
-  default = ""
+  type = bool
+  default = true
 }
 
 variable "container_name" {
