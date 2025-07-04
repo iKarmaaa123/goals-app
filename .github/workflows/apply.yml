@@ -5,7 +5,7 @@ on:
 
 jobs:
   terraform_apply:
-    name: Deploying Terraform Resources
+    name: Running Terraform Apply
     runs-on: ubuntu-latest
     steps:
        - name: Checkout
@@ -29,5 +29,5 @@ jobs:
          run: terraform apply -auto-approve
          working-directory: main
 
-         #fef
+    
         

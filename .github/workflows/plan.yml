@@ -5,7 +5,7 @@ on:
 
 jobs:
   terraform_plan:
-    name: Deploying Terraform Modules
+    name: Running Terraform plan
     runs-on: ubuntu-latest
     steps:
        - name: Checkout
