@@ -28,14 +28,14 @@ jobs:
 
      - name: Terraform Destroy
        run: |
-        terraform init  
-        terraform destroy -auto-approve
+         terraform init  
+         terraform destroy -auto-approve
        working-directory: main
 
      - name: Terraform destroy ECR repo
        run: |
-        terraform init
-        terraform destroy -auto-approve
+         terraform init
+         terraform destroy -auto-approve
        working-directory: modules/ECR
 
 

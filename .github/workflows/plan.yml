@@ -25,7 +25,7 @@ jobs:
          run: terraform init
          working-directory: main
         
-       - name: Setup TFLint
+       - name: RUN TFLINT
          uses: terraform-linters/setup-tflint@v4
          with:
           tflint_version: v0.52.0
@@ -35,6 +35,7 @@ jobs:
 
        - name: Run TFLint
          run: tflint -f compact
+         working-directory: main
 
        - name: Running Checkov
          uses: bridgecrewio/checkov-action@master
