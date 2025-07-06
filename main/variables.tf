@@ -53,12 +53,6 @@ variable "record_type" {
     default = ""
 }
 
-
-variable "records" {
-    type = list
-    default = []
-}
-
 variable "evaluate_target_health" {
   type = bool
   default = true
@@ -154,17 +148,7 @@ variable "ttl" {
   default = 0
 }
 
-variable "vpc_id" {
-  type    = string
-  default = ""
-}
-
 variable "subnets" {
-  type    = list(string)
-  default = []
-}
-
-variable "security_groups" {
   type    = list(string)
   default = []
 }

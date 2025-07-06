@@ -95,11 +95,10 @@ resource "aws_security_group_rule" "aws_security_group_alb_http_ingress" {
   security_group_id = aws_security_group.my_security_group_alb.id
 }
 
-
 resource "aws_security_group_rule" "aws_security_group_alb_https_ingress" {
   type = var.alb_ingress_type
-  from_port = var.alb_egress_from_port
-  to_port = var.alb_egress_to_port
+  from_port = var.alb_ingress_https_from_port
+  to_port = var.alb_ingress_https_to_port
   protocol = var.alb_egress_protocol
   cidr_blocks = var.alb_egress_cidr_blocks
   description = var.alb_egress_description

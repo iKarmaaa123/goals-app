@@ -98,9 +98,11 @@ module "acm" {
   domain_name = var.domain_name
   validation_method = var.validation_method
   certificate_transparency_logging_preference = var.certificate_transparency_logging_preference
-
+  private_zone = var.private_zone
+  ttl = var.ttl
+  allow_overwrite = var.allow_overwrite
+  environment = var.environment
 }
-
 
 module "iam" {
   source = "../modules/IAM"
@@ -119,6 +121,7 @@ module "ecs" {
   target_group_arn = module.alb.target_group_arn
   ecs_cluster = var.ecs_cluster
   family = var.family
+  container_definitions = var.container_definitions
   requires_compatibilities = var.requires_compatibilities
   network_mode = var.network_mode
   memory = var.memory
@@ -128,7 +131,7 @@ module "ecs" {
   desired_count = var.desired_count
   container_name = var.container_name
   container_port = var.container_port
-  
+  assign_public_ip = var.assign_public_ip
 }
 
 module "cloudwatch" {
