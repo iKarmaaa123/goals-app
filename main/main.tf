@@ -25,8 +25,8 @@ module "vpc" {
   alb_ingress_http_protocol = var.alb_ingress_http_protocol
   alb_ingress_http_cidr_blocks = var.alb_ingress_http_cidr_blocks
   alb_ingress_http_description = var.alb_ingress_http_description
-  alb_ingress_https_from_port = var.alb_ingress_http_from_port
-  alb_ingress_https_to_port = var.alb_ingress_http_to_port
+  alb_ingress_https_from_port = var.alb_ingress_https_from_port
+  alb_ingress_https_to_port = var.alb_ingress_https_to_port
   alb_ingress_https_protocol = var.alb_ingress_https_protocol
   alb_ingress_https_cidr_blocks = var.alb_ingress_https_cidr_blocks 
   alb_ingress_https_description = var.alb_ingress_https_description

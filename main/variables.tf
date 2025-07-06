@@ -148,11 +148,6 @@ variable "ttl" {
   default = 0
 }
 
-variable "subnets" {
-  type    = list(string)
-  default = []
-}
-
 variable "vpc_name" {
   type = string
   default = ""
