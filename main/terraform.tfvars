@@ -57,7 +57,7 @@ container_definitions = <<DEFINITION
   [
     {
       "name": "goals-image",
-      "image": "648767092427.dkr.ecr.us-east-1.amazonaws.com/goals-repo:latest",
+      "image": "648767092427.dkr.ecr.us-east-1.amazonaws.com/goals-image/goals-tracker-application:latest",
       "essential": true,
       "portMappings": [
         {
@@ -70,7 +70,7 @@ container_definitions = <<DEFINITION
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "goalslogs",
+          "awslogs-group": "goals-logs",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
