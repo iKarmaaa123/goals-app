@@ -22,7 +22,7 @@ jobs:
           format: 'table'
           exit-code: '0'
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL,HIGH,MEDIUM'
 
       - name: Checkout
         uses: actions/checkout@v2

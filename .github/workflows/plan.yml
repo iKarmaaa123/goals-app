@@ -21,20 +21,19 @@ jobs:
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: us-east-1
 
-       - name: Terraform Init
+       - name: Running Terraform Init
          run: terraform init
          working-directory: main
         
-       - name: RUN TFLINT
+       - name: Installing TFLint
          uses: terraform-linters/setup-tflint@v4
          with:
           tflint_version: v0.52.0
 
-       - name: Init TFLint
-         run: tflint --init
-
-       - name: Run TFLint
-         run: tflint -f compact
+       - name: Running TFLint
+         run: |
+          tflint --init
+          tflint -f compact
          working-directory: main
 
        - name: Running Checkov
@@ -43,8 +42,7 @@ jobs:
            directory: ./main
            quiet: true 
            soft_fail: true 
-           framework: terraform
-           args: --skip-severity LOW
+           #framework: terraform
 
        - name: Terraform validate
          run: terraform validate

@@ -28,6 +28,11 @@ variable "zone_id" {
     default = ""
 }
 
+variable "evaluate_target_health" {
+  type = bool
+  default = true
+}
+
 variable "alb_dns_name" {
     type = string
     default = ""

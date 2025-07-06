@@ -8,6 +8,11 @@ variable "family" {
     default = ""  
 }
 
+variable "container_definitions" {
+  type = string
+  default = ""
+}
+
 variable "requires_compatibilities" {
     type = list(string)
     default = []

@@ -1,35 +1,10 @@
 resource "aws_ecs_cluster" "my_aws_ecs_cluster" {
   name = var.ecs_cluster
-
 }
 
 resource "aws_ecs_task_definition" "my_aws_ecs_task_definition" {
   family                   = var.family
-  container_definitions    = <<DEFINITION
-  [
-    {
-      "name": "goals-image",
-      "image": "648767092427.dkr.ecr.us-east-1.amazonaws.com/goals-repo:latest",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80
-        }
-      ],
-      "memory": 512,
-      "cpu": 256,
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "goalslogs",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
-    }
-  ]
-  DEFINITION
+  container_definitions    = var.container_definitions
   requires_compatibilities = var.requires_compatibilities
   network_mode             = var.network_mode
   memory                   = var.memory

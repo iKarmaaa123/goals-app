@@ -2,8 +2,8 @@ resource "aws_vpc" "my_aws_vpc" {
   cidr_block = var.vpc_cidr_block
 
   tags = {
-    Name = "goalsvpc"
-    }
+    Name = var.vpc_tag
+  }
 }
 
 resource "aws_subnet" "my_aws_public_subnet" {
@@ -12,7 +12,7 @@ resource "aws_subnet" "my_aws_public_subnet" {
   availability_zone = var.availability_zone
 
   tags = {
-    Name = "albsubnet"
+    Name = var.public_subnet_tag
   }
 }
 
@@ -22,10 +22,9 @@ resource "aws_subnet" "my_aws_public_subnet2" {
   availability_zone = var.availability_zone2
 
   tags = {
-    Name = "albsubnet2"
+    Name = var.public_subnet2_tag
   }
 }
-
 
 resource "aws_subnet" "my_aws_private_subnet" {
   vpc_id     = aws_vpc.my_aws_vpc.id
@@ -33,7 +32,7 @@ resource "aws_subnet" "my_aws_private_subnet" {
   availability_zone = var.availability_zone
 
   tags = {
-    Name = "private-subnet"
+    Name = var.private_subnet_tag
   }
 }
 
@@ -43,86 +42,89 @@ resource "aws_subnet" "my_aws_private_subnet2" {
   availability_zone = var.availability_zone2
 
   tags = {
-    Name = "private-subnet2"
+    Name = var.private_subnet2_tag
   }
 }
 
 resource "aws_security_group" "my_security_group_ecs" {
-  name        = "goals-security-group"
+  name        = var.ecs_security_group_name
   vpc_id      = aws_vpc.my_aws_vpc.id
 
   tags = {
-    Name = "goals-security_group"
+    Name = var.ecs_security_group_tag
   }
 }
 
-resource "aws_security_group_rule" "aws_security_group_ingress_https" {
-  type = "ingress"
-  from_port = 443
-  to_port = 443
-  protocol = "TCP"
-  description = "Allow inbound traffic from ALB"
+resource "aws_security_group_rule" "aws_security_group_ecs_ingress_https" {
+  type = var.ecs_ingress_https_type
+  from_port = var.ecs_ingress_https_from_port
+  to_port = var.ecs_ingress_https_to_port
+  protocol = var.ecs_ingress_https_protocol
+  description = var.ecs_ingress_https_description
   security_group_id = aws_security_group.my_security_group_ecs.id
   source_security_group_id = aws_security_group.my_security_group_alb.id
 }
 
-resource "aws_security_group_rule" "my_aws_security_group_egress" {
-  type = "egress"
-  from_port = 0
-  to_port = 0
-  protocol = "-1"
-  cidr_blocks = ["0.0.0.0/0"]
-  description = "Allow outbound traffic from ECS"
+resource "aws_security_group_rule" "my_aws_security_group_ecs_egress" {
+  type = var.ecs_egress_type
+  from_port = var.ecs_egress_from_port
+  to_port = var.ecs_egress_to_port
+  protocol = var.ecs_egress_protocol
+  cidr_blocks = var.ecs_egress_cidr_blocks
+  description = var.ecs_egress_description
   security_group_id = aws_security_group.my_security_group_ecs.id
 }
 
 
 resource "aws_security_group" "my_security_group_alb" {
-  name = "goals-security-group-alb"
+  name = var.alb_security_group_name
   vpc_id = aws_vpc.my_aws_vpc.id
+
+  tags = {
+    Name = var.alb_security_group_tag
+  }
 }
 
-
 resource "aws_security_group_rule" "aws_security_group_alb_http_ingress" {
-  type = "ingress"
-  from_port = 80
-  to_port = 80
-  protocol = "TCP"
-  cidr_blocks = ["0.0.0.0/0"]
-  description = "Allow inbound to ALB from internet through port 80"
+  type = var.alb_ingress_type
+  from_port = var.alb_ingress_http_from_port
+  to_port = var.alb_ingress_http_to_port
+  protocol = var.alb_ingress_http_protocol
+  cidr_blocks = var.alb_ingress_http_cidr_blocks
+  description = var.alb_ingress_http_description
   security_group_id = aws_security_group.my_security_group_alb.id
 }
 
 
-resource "aws_security_group_rule" "aws_security_group_alb__https_ingress" {
-  type = "ingress"
-  from_port = 443
-  to_port = 443
-  protocol = "TCP"
-  cidr_blocks = ["0.0.0.0/0"]
-  description = "Allow inbound traffic to ALB from internet over port 443"
+resource "aws_security_group_rule" "aws_security_group_alb_https_ingress" {
+  type = var.alb_ingress_type
+  from_port = var.alb_egress_from_port
+  to_port = var.alb_egress_to_port
+  protocol = var.alb_egress_protocol
+  cidr_blocks = var.alb_egress_cidr_blocks
+  description = var.alb_egress_description
   security_group_id = aws_security_group.my_security_group_alb.id
 }
 
 resource "aws_security_group_rule" "aws_security_group_alb_egress" {
-  type = "egress"
-  from_port = 0
-  to_port = 0
-  protocol = "-1"
-  cidr_blocks = ["0.0.0.0/0"]
-  description = "Allow outbound traffic from ALB"
+  type = var.alb_egress_type
+  from_port = var.alb_egress_from_port
+  to_port = var.alb_egress_to_port
+  protocol = var.alb_egress_protocol
+  cidr_blocks = var.alb_egress_cidr_blocks
+  description = var.alb_egress_description
   security_group_id = aws_security_group.my_security_group_alb.id
 }
 
 resource "aws_eip" "my_aws_eip" {
-  domain   = "vpc"
+  domain   = var.eip_domain
 }
 
 resource "aws_internet_gateway" "my_aws_internet_gateway" {
   vpc_id = aws_vpc.my_aws_vpc.id
 
   tags = {
-    Name = "goalsinternetgateway"
+    Name = var.internet_gateway_tag
   }
 }
 
@@ -155,13 +157,13 @@ resource "aws_route_table" "my_aws_route_table2" {
   vpc_id = aws_vpc.my_aws_vpc.id
 
   tags = {
-    Name = "route-table2"
+    Name = var.route_table2_tag
   }
 }
 
 resource "aws_route" "my_aws_route2" {
   route_table_id            = aws_route_table.my_aws_route_table2.id
-  destination_cidr_block    = "0.0.0.0/0"
+  destination_cidr_block    = var.destination_cidr_block
   gateway_id = aws_nat_gateway.my_aws_nat_gateway.id
 }
 
