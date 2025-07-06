@@ -56,7 +56,7 @@ family = "goals"
 container_definitions = <<DEFINITION
   [
     {
-      "name": "goals-image",
+      "name": "goals-container",
       "image": "648767092427.dkr.ecr.us-east-1.amazonaws.com/goals-image/goals-tracker-application:latest",
       "essential": true,
       "portMappings": [
@@ -86,7 +86,7 @@ ecs_service_name = "goals-ecs-service"
 launch_type = "FARGATE"
 desired_count = 2
 assign_public_ip = false
-container_name = "goals"
+container_name = "goals-container"
 container_port = 80
 validation_method = "DNS"
 certificate_transparency_logging_preference = "ENABLED"
