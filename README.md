@@ -74,20 +74,13 @@ To access your container that you just started up you will have to connect to it
 
 If you can access your application, you have successfully connected to your container via your localhost. If you are having connections make sure you have probably set up everything and that you have exposed the right ports for your container.
 
+<h2> Step 2: Creating an AWS ECR Image Repository </h2>
 
+Next, create an ECR repository on AWS ECR:
+<img width="1895" height="287" alt="image" src="https://github.com/user-attachments/assets/d9449c91-5ac5-46c5-a3c7-9f219ec1c41e" />
 
-
-<h2> Step 2: Setting up AWS ECR Image Repository </h2>
-
-After git cloning the repository, cd into the ECR module and run ``` terraform init ``` to initialise your current working directory, and to also install the provider plugins.
-
-After that run the ``` terraform plan ``` command to see what is going to be created and deployed, and then the ``` terraform apply ``` command to deploy the AWS ECR image repo:
-
-You should see a newly created AWS ECR image repo inside of AWS ECR:
+After that, you should see a newly created AWS ECR repository inside AWS ECR:
 ![image](https://github.com/user-attachments/assets/619c9afa-f941-4f28-9e81-119306d026fa)
-
-
-
 
 <h2> Step 3: Pushing Docker image to ECR </h2>
 
