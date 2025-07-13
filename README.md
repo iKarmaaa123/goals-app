@@ -2,11 +2,11 @@
 
 <h2> Overview </h2>
 
-This AWS ECS end-to-end project involves deploying a node.js goals-management application, which allows users to create and manage their own goals, to AWS ECS. The technologies I used were Terraform, Docker, AWS, GitHub Actions, and Node.js. Terraform modules were used to create code that was both reusable and adhered to standard practices. 
+This AWS ECS end-to-end project involves deploying a node.js goals-management application, which allows users to create and manage their own goals. The technologies I used in this project were Terraform, Docker, AWS, GitHub Actions, and Node.js. Terraform modules were used to create code that was both reusable and adhered to standard practices. 
 
 AWS services such as ECS, ECR, VPC, Route53, CloudWatch, and ACM were utilised for this project. Best practices were followed and implemented within the project. Git pre-commit hooks were also used to ensure Terraform code was scanned and adhered to best practices before being committed and pushed to GitHub.
 
-This README outlines step-by-step instructions for setting up and running your Docker containers locally, pushing your Docker images to AWS ECR, and setting up our AWS infrastructure to deploy our containerised application.
+This README outlines step-by-step instructions for setting up and running your Docker containers locally, pushing your Docker images to AWS ECR, and setting up the AWS infrastructure to deploy the containerised application.
 
 <h2> Prerequisites </h2>
 
@@ -76,8 +76,14 @@ If you can access your application, you have successfully connected to your cont
 
 <h2> Step 2: Creating an AWS ECR Image Repository </h2>
 
+
+
+
 Next, create an ECR repository on AWS ECR:
 <img width="1895" height="287" alt="image" src="https://github.com/user-attachments/assets/d9449c91-5ac5-46c5-a3c7-9f219ec1c41e" />
+
+
+
 
 After that, you should see a newly created AWS ECR repository inside AWS ECR:
 ![image](https://github.com/user-attachments/assets/619c9afa-f941-4f28-9e81-119306d026fa)
