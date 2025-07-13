@@ -498,7 +498,12 @@ variable "identifiers" {
   default = [""]
 }
 
-variable "goals_logs" {
+variable "goals_log_name" {
+  type = string
+  default = ""
+}
+
+variable "goals_log_stream" {
   type = string
   default = ""
 }

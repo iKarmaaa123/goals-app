@@ -136,6 +136,7 @@ module "ecs" {
 
 module "cloudwatch" {
   source = "../modules/CloudWatch"
-  goals_logs = var.goals_logs
+  goals_log_name= var.goals_log_name
+  goals_log_stream_name = var.goals_log_stream_name
   retention_in_days = var.retention_in_days
 }

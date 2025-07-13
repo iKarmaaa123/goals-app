@@ -122,5 +122,6 @@ policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePol
 actions = ["sts:AssumeRole"]
 principals_type = "Service"
 identifiers = ["ecs-tasks.amazonaws.com"]
-goals_logs = "goals-logs"
+goals_log_name = "goals-log"
+goals_log_stream_name = "goals-log-stream"
 retention_in_days = 365
