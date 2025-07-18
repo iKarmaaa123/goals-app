@@ -148,7 +148,7 @@ After you have clicked 'actions', on the left you will see a list of workflows:
 
 Click on the ```Docker Workflow``` workflow and then press 'run workflow':
 
-![image](images/image)
+![image](images/image.png)
 
 You should see your workflow running:
 
