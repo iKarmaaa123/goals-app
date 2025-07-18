@@ -503,7 +503,7 @@ variable "goals_log_name" {
   default = ""
 }
 
-variable "goals_log_stream" {
+variable "goals_log_stream_name" {
   type = string
   default = ""
 }

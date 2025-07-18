@@ -137,34 +137,30 @@ Now cd out of main and cd into modules/ECR to destroy the AWS ECR repository thr
 
 <h2> Step 7: Building Docker image, pushing Docker image, creating and destroying the infrastructure through GitHub Actions CI/CD pipelines </h2>
 
-Now that you have manually built your Docker image, pushed it to ECR, created the infrastructure, and destroyed it manually, it is time to automate this whole process through CI/CD pipelines. After you clone the repository, you will find two GitHub Actions CI/CD pipeline YAML configuration files - ```deploy.yml``` and ```destroy.yml```. The deploy pipeline does several things- automating the creation of the Docker image, pushing the Docker image to AWS ECR, and setting up our AWS infrastructure. The destroy pipeline destroys the whole infrastructure. After pushing to your GitHub, to run these pipelines navigate over to actions at the top:
+Now that you have manually built your Docker image, pushed it to ECR, created the infrastructure, and destroyed it manually, it is time to automate this whole process through CI/CD pipelines. After you clone the repository, you will find four GitHub Actions CI/CD pipeline YAML configuration files - ```docker.yml```, ```plan.yml```, ```apply.yml``` and ```destroy.yml```. 
+
+The ```docker.yml``` workflow automates the creation of the container image, performing security checks on the container image, and pushing the container image to AWS ECR. The ```plan.yml``` workflow automates the plan execution for the resources that are going to be deployed. The ```apply.yml``` workflow automates the deployment process for your Terraform resources. The ```destroy.yml``` destroys the whole infrastructure. After pushing to your GitHub, to run these pipelines navigate over to actions at the top:
 
 ![image](https://github.com/user-attachments/assets/acf85475-e22d-4158-a9fa-c5b283faf4c7)
 
-After you have clicked 'actions', on the left you will see the workflows that you pushed from your local repository to your remote repository:
+After you have clicked 'actions', on the left you will see a list of workflows:
 
-![image](https://github.com/user-attachments/assets/75d2b93c-2cee-4735-b3b4-8ca31ef80b70)
+![alt text](image-1.png)
 
-Click on the 'Building Docker Image, Pushing Docker Image to ECR, and Creating AWS Resources' pipeline and then press 'run workflow':
+Click on the ```Docker Workflow``` workflow and then press 'run workflow':
 
-![image](https://github.com/user-attachments/assets/470af851-bbb1-487f-9c58-b6f6a356e69d)
+![alt text](image.png)
 
 You should see your workflow running:
 
-![image](https://github.com/user-attachments/assets/4da49483-0d79-43d9-bffe-1d3fb3f2c0a8)
+![alt text](image-2.png)
 
-Click on it to see the 'jobs' that are currently running within your pipeline:
+After you have ran the first workflow, run the ```Terraform Plan Workflow``` and then the ```Terraform Apply Workflow```.
 
-![image](https://github.com/user-attachments/assets/e48c9516-3da9-4563-9b07-4c316aea1ec3)
-
-If all the jobs have a tick then you have successfully automated the deployment process for this whole project:
-
-![image](https://github.com/user-attachments/assets/c651cfd1-b252-46d0-a427-4dd12925d994)
-
-Type in 'ikarmaa123.com' in your browser and you should be prompted with the same goals web page that we deployed before manually:
+After having successfully ran all of the workflows, type in 'ikarmaa123.com' in your browser and you should be prompted with the same goals app web page that we deployed before manually:
 
 ![image](https://github.com/user-attachments/assets/f270d19c-24cc-412a-952e-1da4f0dd13cb)
 
-Now destroy the infrastructure by running the 'Destroying Terraform Resources' workflow:
+Now destroy the infrastructure by running the ```Terraform Destroy Workflow```:
 
 ![image](https://github.com/user-attachments/assets/e5038c7d-eab7-41a7-bf4c-0f0667538190)
