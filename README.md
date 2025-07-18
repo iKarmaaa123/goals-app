@@ -144,15 +144,15 @@ The ```docker.yml``` workflow automates the creation of the container image, per
 
 After you have clicked 'actions', on the left you will see a list of workflows:
 
-![alt text](image-1.png)
+![image](images/image-1.png)
 
 Click on the ```Docker Workflow``` workflow and then press 'run workflow':
 
-![alt text](image.png)
+![image](images/image)
 
 You should see your workflow running:
 
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 After you have ran the first workflow, run the ```Terraform Plan Workflow``` and then the ```Terraform Apply Workflow```.
 
