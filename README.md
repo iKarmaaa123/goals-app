@@ -131,9 +131,8 @@ Well done, you now have successfully deployed your containerised application to 
 
 ![image](https://github.com/user-attachments/assets/b742e748-95b3-4599-9988-5304dce1f55f)
 
-Now cd out of main and cd into modules/ECR to destroy the AWS ECR repository through the ```terraform destroy``` command:
+Also be sure to delete your ECR repository in AWS.
 
-![image](https://github.com/user-attachments/assets/75d31007-80cb-4e53-9cb0-ebbaf6b0f14a)
 
 <h2> Step 7: Building Docker image, pushing Docker image, creating and destroying the infrastructure through GitHub Actions CI/CD pipelines </h2>
 
