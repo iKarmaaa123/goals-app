@@ -31,6 +31,8 @@ Below is a visual architectural representation of the infrastructure that we are
 
 <h2> Project Directory Structure </h2>
 
+Here is a view of the project's directory structure:
+
 ```hcl
 .github/workflows/
 ├── apply.yml
@@ -57,7 +59,6 @@ modules/
 ├── IAM/
 ├── Route53/
 └── VPC/
-```
 ```
 
 <h2> Step 1: Running the node.js application on a container locally </h2>
