@@ -29,6 +29,37 @@ Below is a visual architectural representation of the infrastructure that we are
 
 ![Architecture](images/Architecture.drawio.png)
 
+<h2> Project Directory Structure </h2>
+
+```hcl
+.github/workflows/
+├── apply.yml
+├── destroy.yml
+├── docker.yml
+├── plan.yml
+goals-app/
+├── public/
+├── Dockerfile
+├── package.json
+├── server.js
+main/
+├── .gitignore
+├── .pre-commit-config.yml
+├── main.tf
+├── terraform.tfvars
+├── variables.tf
+└── versions.tf
+modules/
+├── ACM
+├── ALB
+├── CloudWatch
+├── ECS
+├── IAM
+├── Route53
+└── VPC
+```
+```
+
 <h2> Step 1: Running the node.js application on a container locally </h2>
 We are going to be testing the application on a container running on our local machine before having it run on AWS ECS. To do this you will need to build the Docker image by creating a Dockerfile that will handle the application dependencies and setup needed for the app to work within the container:
 
