@@ -50,13 +50,13 @@ main/
 ├── variables.tf
 └── versions.tf
 modules/
-├── ACM
-├── ALB
-├── CloudWatch
-├── ECS
-├── IAM
-├── Route53
-└── VPC
+├── ACM/
+├── ALB/
+├── CloudWatch/
+├── ECS/
+├── IAM/
+├── Route53/
+└── VPC/
 ```
 ```
 
