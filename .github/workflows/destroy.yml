@@ -31,7 +31,3 @@ jobs:
          terraform init  
          terraform destroy -auto-approve
        working-directory: main
-
-
-
-

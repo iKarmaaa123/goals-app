@@ -34,31 +34,52 @@ Below is a visual architectural representation of the infrastructure that we are
 Here is a view of the project's directory structure:
 
 ```hcl
-.github/workflows/
-├── apply.yml
-├── destroy.yml
-├── docker.yml
-├── plan.yml
-goals-app/
-├── public/
-├── Dockerfile
-├── package.json
-├── server.js
-main/
-├── .gitignore
-├── .pre-commit-config.yml
-├── main.tf
-├── terraform.tfvars
-├── variables.tf
-└── versions.tf
-modules/
-├── ACM/
-├── ALB/
-├── CloudWatch/
-├── ECS/
-├── IAM/
-├── Route53/
-└── VPC/
+|-- README.md
+|-- goals-app
+|   |-- Dockerfile
+|   |-- package.json
+|   |-- public
+|   |   `-- styles.css
+|   `-- server.js
+|-- images
+|   |-- Architecture.drawio.png
+|   |-- image-1.png
+|   |-- image-2.png
+|   `-- image.png
+|-- main
+|   |-- main.tf
+|   |-- terraform.tfvars
+|   |-- variables.tf
+|   `-- versions.tf
+`-- modules
+    |-- ACM
+    |   |-- main.tf
+    |   |-- output.tf
+    |   `-- variables.tf
+    |-- ALB
+    |   |-- main.tf
+    |   |-- output.tf
+    |   `-- variables.tf
+    |-- CloudWatch
+    |   |-- main.tf
+    |   |-- output.tf
+    |   `-- variables.tf
+    |-- ECS
+    |   |-- main.tf
+    |   |-- output.tf
+    |   `-- variables.tf
+    |-- IAM
+    |   |-- main.tf
+    |   |-- output.tf
+    |   `-- variables.tf
+    |-- Route53
+    |   |-- main.tf
+    |   |-- output.tf
+    |   `-- variables.tf
+    `-- VPC
+        |-- main.tf
+        |-- output.tf
+        `-- variables.tf
 ```
 
 <h2> Step 1: Running the node.js application on a container locally </h2>

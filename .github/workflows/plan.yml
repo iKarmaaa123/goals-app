@@ -42,7 +42,7 @@ jobs:
            directory: ./main
            quiet: true 
            soft_fail: true 
-           #framework: terraform
+           framework: terraform
 
        - name: Terraform validate
          run: terraform validate
